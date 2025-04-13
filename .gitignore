@@ -172,3 +172,10 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# mine
+render_logs
+models
+data
+test_logs
+training_logs
