@@ -13,6 +13,8 @@ def create_env(df, initial_position='random', windows=None, trading_fees=0, rewa
             trading_fees = trading_fees, 
             reward_function = reward_function
         )
+    
+    env.reset(seed=2025)
 
     env.add_metric('Position Changes', lambda history : np.sum(np.diff(history['position']) != 0))
     env.add_metric('Episode Length', lambda history : len(history['position']))
@@ -52,5 +54,3 @@ def create_env(df, initial_position='random', windows=None, trading_fees=0, rewa
 
     
     return env
-
-

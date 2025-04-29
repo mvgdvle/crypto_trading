@@ -1,12 +1,11 @@
 import gymnasium as gym
 from stable_baselines3.common.vec_env import DummyVecEnv
-from stable_baselines3.common.callbacks import EvalCallback
 import time
 import json
 import os
 from gym_trading_env.environments import basic_reward_function
-
 from environment import create_env
+from utils import set_seed
 
 
 def train(model_class, algorithm_name, policy, df, dir, timesteps=100_000,
@@ -39,9 +38,9 @@ def train(model_class, algorithm_name, policy, df, dir, timesteps=100_000,
         print(f"File '{params_path}' not found. Using defaults.")
 
     # if algorithm_name == "DQN" and "buffer_size" not in custom_params:
-    #     custom_params["buffer_size"] = 5000
+    #     custom_params["buffer_size"] = 10000
 
-    model = model_class(policy, env, verbose=1, **custom_params)
+    model = model_class(policy, env, verbose=1, seed=2025, **custom_params)
 
     start_time = time.time()
     model.learn(total_timesteps=timesteps)

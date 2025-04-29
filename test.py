@@ -29,7 +29,7 @@ def test_model(df, model, dir, initial_position, windows, trading_fees, reward_f
     model = model.load('models/' + dir)
 
     done, truncated = False, False
-    observation, info = env_test.reset()
+    observation, info = env_test.reset(seed=2025)
     while not done and not truncated:
         action, _states = model.predict(observation)
         observation, reward, done, truncated, info = env_test.step(action)
